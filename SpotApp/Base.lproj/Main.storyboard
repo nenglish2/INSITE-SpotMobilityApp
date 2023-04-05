@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32k-8o-4oJ">
-                                <rect key="frame" x="376" y="246" width="144" height="68"/>
+                                <rect key="frame" x="376" y="245" width="144" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <state key="normal" title="Button"/>
@@ -163,6 +163,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Back"/>
                                 <connections>
+                                    <action selector="back:" destination="AUD-5j-CAf" eventType="touchUpInside" id="cfo-nU-UTK"/>
                                     <segue destination="BYZ-38-t0r" kind="showDetail" identifier="contToHome" animates="NO" id="rPX-dh-9dK"/>
                                 </connections>
                             </button>
@@ -357,28 +358,28 @@
                                 </subviews>
                             </stackView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-gU-sov">
-                                <rect key="frame" x="399" y="102" width="306" height="115.5"/>
+                                <rect key="frame" x="399" y="101.99999999999999" width="314" height="115.50000000000001"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="3FH-S9-Tpd">
-                                        <rect key="frame" x="-2" y="0.0" width="310" height="31"/>
+                                        <rect key="frame" x="-2" y="0.0" width="318" height="31"/>
                                         <connections>
                                             <action selector="setMouth:" destination="AUD-5j-CAf" eventType="valueChanged" id="d07-1U-ebD"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Mouth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kG-rc-Zgz">
-                                        <rect key="frame" x="0.0" y="30" width="306" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="30" width="314" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3e-zo-7K0">
-                                        <rect key="frame" x="0.0" y="50.5" width="306" height="10"/>
+                                        <rect key="frame" x="0.0" y="50.5" width="314" height="10"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIk-pa-lhx">
-                                        <rect key="frame" x="0.0" y="60.5" width="306" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="60.5" width="314" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Button"/>
                                         <connections>
@@ -386,7 +387,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open / Close" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaA-BP-zC8">
-                                        <rect key="frame" x="0.0" y="95" width="306" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="95" width="314" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

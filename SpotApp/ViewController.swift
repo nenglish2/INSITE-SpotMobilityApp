@@ -211,6 +211,7 @@ class ControllerViewController: UIViewController {
         transcript.isHidden = true
         transcript.text = speech.transcript
         
+        self.speak(text: "Starting Controls")
     }
     
     
@@ -225,14 +226,28 @@ class ControllerViewController: UIViewController {
         utterance.volume = 0.8
 
         // Retrieve the British English voice.
-        let voice = AVSpeechSynthesisVoice(language: "en-US")
+        let voice = AVSpeechSynthesisVoice(language: "en-GB")
 
         // Assign the voice to the utterance.
         utterance.voice = voice
 
         // Tell the synthesizer to speak the utterance.
         synthesizer.speak(utterance)
+        
+        
+        do{
+            let _ = try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback,
+                                                                    options: .duckOthers)
+          }catch{
+              print(error)
+          }
     }
+    
+    
+    @IBAction func back(_ sender: Any) {
+        self.speak(text: "Back")
+    }
+    
     
     
     
@@ -252,6 +267,7 @@ class ControllerViewController: UIViewController {
             voiceComm.isHidden = false
             round.isHidden = false
             transcript.isHidden = false
+            self.speak(text: "Voice Interface")
         } else {
             ModeSwitch.setTitle("Voice Interface", for: .normal)
             toolbar.isHidden = false
@@ -263,6 +279,7 @@ class ControllerViewController: UIViewController {
             voiceComm.isHidden = true
             round.isHidden = true
             transcript.isHidden = true
+            self.speak(text: "Physical Interface")
         }
         MODE = !MODE
     }
@@ -270,15 +287,19 @@ class ControllerViewController: UIViewController {
     
     @IBAction func toggleTranscribe(_ sender: Any) {
         if isTranscribing {
+            transcript.text = speech.transcript
             speech.reset()
-            self.speak(text: "Stopped")
+            self.speak(text: speech.transcript)
+            print("stop",speech.transcript)
+            self.handleSpeech(text: speech.transcript)
         } else {
             speech.transcribe()
-            print("start",speech.transcript)
-            transcript.text = speech.transcript
+            print("start")
         }
         isTranscribing = !isTranscribing
     }
+    
+    
     
     
     /**
@@ -441,6 +462,38 @@ class ControllerViewController: UIViewController {
         send(message: "stand", priority: true)
     }
     
+    
+    
+    private func handleSpeech(text:String) {
+        if text.count < 9 {
+            return
+        }
+        
+        if text.prefix(9) != "Hey spot " {
+            return
+        }
+        
+        let chars = Array(text)
+        var command = String(chars[9...])
+        print("command:"+command)
+        
+        
+        var validCommands = ["go forward":0,"go backward":0,"go left":0, "go right":0, "turn left":0, "turn right":0, "start":1, "stop":1, "sit":1, "stand":1]
+        if validCommands.keys.contains(command){
+            if validCommands[command] == 1 {
+                self.send(message: command, priority: true)
+            } else if validCommands[command] == 2 {
+                self.send(message: command, emerg:true, priority: true)
+            } else {
+                self.send(message: command)
+            }
+            print("Valid")
+        } else {
+            print("Invalid Command")
+        }
+    }
+    
+    
     /**
         Publishes message with optional emergency send
      
@@ -452,7 +505,7 @@ class ControllerViewController: UIViewController {
         if emerg {
             self.mqttClient.publish("rpi/emerg", withString: message)
         } else if priority {
-            var temp = movestack
+            let temp = movestack
             movestack = 0
             carefulSend(message: message)
             movestack = temp
