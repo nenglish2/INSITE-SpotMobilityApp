@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-SpotApp/Pods-SpotApp-frameworks.sh
+${BUILT_PRODUCTS_DIR}/CDJoystick/CDJoystick.framework
+${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework
+${BUILT_PRODUCTS_DIR}/MqttCocoaAsyncSocket/MqttCocoaAsyncSocket.framework
