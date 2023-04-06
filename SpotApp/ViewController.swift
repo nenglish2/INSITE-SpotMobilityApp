@@ -17,6 +17,8 @@ var connected = false // whether connected to mqtt host
 // Create a speech synthesizer.
 let synthesizer = AVSpeechSynthesizer()
 
+
+// MARK: -HOME VIEW
 /**
     Controller for home view.  Handles connection to server.
  */
@@ -101,13 +103,12 @@ class HomeViewController: UIViewController {
             } else {
                 print("Connection failed")
             }
-            
         }
-        
-        
-        
     }
     
+    /**
+     Disconnect from MQTT
+     */
     @IBAction func disconnectButton(_ sender: UIButton) {
         mqttClient.disconnect()
     }
@@ -118,7 +119,7 @@ class HomeViewController: UIViewController {
 
 
 
-
+// MARK: -CONTROLLER VIEW
 /**
     Controls the controller screen.  Handles joystick input, launch and shutdown,
  */
@@ -214,7 +215,19 @@ class ControllerViewController: UIViewController {
         self.speak(text: "Starting Controls")
     }
     
+    /**
+     Executes additional actions when back button is pressed.
+     */
+    @IBAction func back(_ sender: Any) {
+        self.speak(text: "Back")    // speak
+    }
     
+    // MARK: -Speech & VI
+    /**
+     Creates and executes an utterance to speak input text.
+     
+     - Parameter text: the str to speak
+     */
     func speak(text: String) {
         // Create an utterance.
         let utterance = AVSpeechUtterance(string: text)
@@ -244,15 +257,11 @@ class ControllerViewController: UIViewController {
     }
     
     
-    @IBAction func back(_ sender: Any) {
-        self.speak(text: "Back")
-    }
-    
-    
-    
-    
+    /**
+     Switches between physical and voice interface modes.  Hides components accordingly.  Speaks transition.
+     */
     @IBAction func switchMode(_ sender: Any) {
-        if MODE {
+        if MODE { // to voice interface
             ModeSwitch.setTitle("Physical Interface", for: .normal)
             settingsMenu.isHidden = true
             manipMenu.isHidden = true
@@ -268,7 +277,7 @@ class ControllerViewController: UIViewController {
             round.isHidden = false
             transcript.isHidden = false
             self.speak(text: "Voice Interface")
-        } else {
+        } else { // to physical interface
             ModeSwitch.setTitle("Voice Interface", for: .normal)
             toolbar.isHidden = false
             startStop.isHidden = false
@@ -284,24 +293,63 @@ class ControllerViewController: UIViewController {
         MODE = !MODE
     }
     
-    
+    /**
+     Starts or stops transcription.  If stopping, sends the transcript to the handler for processing.
+     */
     @IBAction func toggleTranscribe(_ sender: Any) {
-        if isTranscribing {
+        if isTranscribing { // stop transcribing, handle the transcript
             transcript.text = speech.transcript
-            speech.reset()
             self.speak(text: speech.transcript)
             print("stop",speech.transcript)
             self.handleSpeech(text: speech.transcript)
-        } else {
+            speech.reset()
+        } else { // start transcribing
             speech.transcribe()
             print("start")
         }
         isTranscribing = !isTranscribing
     }
     
+    /**
+     Handles processing commands from speech transcripts.  Calls send with any commands found.
+     
+     - Parameter text: string containing potential command
+     */
+    private func handleSpeech(text:String) {
+        if text.count < 9 { //Safety check, too short to contain command
+            return
+        }
+        
+        if text.prefix(9) != "Hey spot " { //Not a command, return
+            return
+        }
+        
+        // Grab potential command portion from transcript
+        let chars = Array(text)
+        var command = String(chars[9...])
+        print("command:"+command)
+        
+        
+        var validCommands = ["go forward":0,"go backward":0,"go left":0, "go right":0, "turn left":0, "turn right":0, "start":1, "stop":1, "sit":1, "stand":1]
+        
+        // Check against valid commands, send
+        if validCommands.keys.contains(command){
+            if validCommands[command] == 1 {
+                self.send(message: command, priority: true)
+            } else if validCommands[command] == 2 {
+                self.send(message: command, emerg:true, priority: true)
+            } else {
+                self.send(message: command)
+            }
+            print("Valid")
+        } else {
+            print("Invalid Command")
+        }
+    }
     
     
     
+    // MARK: -Launch & Estop
     /**
         Launches or shuts down Spot
      */
@@ -328,6 +376,10 @@ class ControllerViewController: UIViewController {
     }
     
     
+    // MARK: -Submenus
+    /**
+     Opens the settings menu
+     */
     @IBAction func Settings(_ sender: Any) {
         settingsMenu.isHidden = !settingsMenu.isHidden
         manipMenu.isHidden = true
@@ -335,7 +387,9 @@ class ControllerViewController: UIViewController {
         rollMenu.isHidden = true
     }
     
-    
+    /**
+     Opens the manipulation menu
+     */
     @IBAction func Manipulation(_ sender: Any) {
         manipMenu.isHidden = !manipMenu.isHidden
         settingsMenu.isHidden = true
@@ -343,7 +397,9 @@ class ControllerViewController: UIViewController {
         rollMenu.isHidden = true
     }
     
-    
+    /**
+     Opens the missions menu
+     */
     @IBAction func Missions(_ sender: Any) {
         missionMenu.isHidden = !missionMenu.isHidden
         settingsMenu.isHidden = true
@@ -351,6 +407,9 @@ class ControllerViewController: UIViewController {
         rollMenu.isHidden = true
     }
     
+    /**
+     Opens the roll menu
+     */
     @IBAction func Roll(_ sender: Any) {
         rollMenu.isHidden = !rollMenu.isHidden
         settingsMenu.isHidden = true
@@ -358,6 +417,8 @@ class ControllerViewController: UIViewController {
         manipMenu.isHidden = true
     }
     
+    
+    // MARK: -Joysticks
     /**
      Converts raw joystick data to usable format
      
@@ -415,6 +476,8 @@ class ControllerViewController: UIViewController {
         }
     }
     
+    
+    // MARK: -Setters & Toggles
     @IBAction func setHeight(_ sender: UISlider) {
         send(message: "setHeight" + String(sender.value), priority: true)
     }
@@ -464,36 +527,7 @@ class ControllerViewController: UIViewController {
     
     
     
-    private func handleSpeech(text:String) {
-        if text.count < 9 {
-            return
-        }
-        
-        if text.prefix(9) != "Hey spot " {
-            return
-        }
-        
-        let chars = Array(text)
-        var command = String(chars[9...])
-        print("command:"+command)
-        
-        
-        var validCommands = ["go forward":0,"go backward":0,"go left":0, "go right":0, "turn left":0, "turn right":0, "start":1, "stop":1, "sit":1, "stand":1]
-        if validCommands.keys.contains(command){
-            if validCommands[command] == 1 {
-                self.send(message: command, priority: true)
-            } else if validCommands[command] == 2 {
-                self.send(message: command, emerg:true, priority: true)
-            } else {
-                self.send(message: command)
-            }
-            print("Valid")
-        } else {
-            print("Invalid Command")
-        }
-    }
-    
-    
+    // MARK: -Send Mssgs
     /**
         Publishes message with optional emergency send
      
