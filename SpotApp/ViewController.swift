@@ -17,6 +17,17 @@ var connected = false // whether connected to mqtt host
 // Create a speech synthesizer.
 let synthesizer = AVSpeechSynthesizer()
 
+// Create a speech recognizer
+let speech = SpeechRecognizer()
+
+var text = ""
+
+var cancellable = speech.$transcript.sink(receiveValue: { newTitle in
+    print("Title changed to: '\(newTitle)'")
+    print("ViewModel title is: '\(speech.transcript)'")
+})
+//speech.transcript = "@Published explained"
+
 
 // MARK: -HOME VIEW
 /**
@@ -119,6 +130,20 @@ class HomeViewController: UIViewController {
 
 
 
+//class SharingManager {
+//    static let sharedInstance = SharingManager()
+//    var updateLabel: (() -> Void)?
+//    var labelChange: String = text {
+//        didSet {
+//            print("set")
+//            updateLabel?()
+//        }
+//    }
+//
+//}
+
+
+
 // MARK: -CONTROLLER VIEW
 /**
     Controls the controller screen.  Handles joystick input, launch and shutdown,
@@ -143,7 +168,6 @@ class ControllerViewController: UIViewController {
     var MODE = true
     var isTranscribing = false
     
-    let speech = SpeechRecognizer()
     
     
     @IBOutlet weak var voiceComm: UIButton!
@@ -174,10 +198,12 @@ class ControllerViewController: UIViewController {
     @IBOutlet private weak var joystickMove: CDJoystick!
 
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         AVSpeechSynthesisVoice.speechVoices()
+//        SharingManager.sharedInstance.updateLabel = updateTranscript
         
         joystickMove.trackingHandler = { joystickData in
             // print("joystickMove data: \(joystickData)")
@@ -210,9 +236,23 @@ class ControllerViewController: UIViewController {
         voiceComm.isHidden = true
         round.isHidden = true
         transcript.isHidden = true
-        transcript.text = speech.transcript
         
         self.speak(text: "Starting Controls")
+        
+        cancellable = speech.$transcript.sink(receiveValue: { [weak self] value in
+//                print("transcript changed to \(value)")
+                text = value
+                self?.updateTranscript()
+            })
+        updateTranscript()
+    }
+    
+    
+    
+    
+    func updateTranscript(){
+        transcript.text = speech.transcript
+//        print("Transcript label text is now: '\(transcript.text ?? "empty")'")
     }
     
     /**
@@ -236,7 +276,7 @@ class ControllerViewController: UIViewController {
         utterance.rate = 0.57
         utterance.pitchMultiplier = 0.8
         utterance.postUtteranceDelay = 0.2
-        utterance.volume = 0.8
+        utterance.volume = 1.0
 
         // Retrieve the British English voice.
         let voice = AVSpeechSynthesisVoice(language: "en-GB")
@@ -298,14 +338,16 @@ class ControllerViewController: UIViewController {
      */
     @IBAction func toggleTranscribe(_ sender: Any) {
         if isTranscribing { // stop transcribing, handle the transcript
-            transcript.text = speech.transcript
-            self.speak(text: speech.transcript)
-            print("stop",speech.transcript)
+//            speech.transcript = speech.transcript
+//            text = speech.transcript
+//            transcript.text = speech.transcript
+//            self.speak(text: speech.transcript)
+//            print("stop",speech.transcript)
             self.handleSpeech(text: speech.transcript)
             speech.reset()
         } else { // start transcribing
             speech.transcribe()
-            print("start")
+//            print("start")
         }
         isTranscribing = !isTranscribing
     }
@@ -326,11 +368,12 @@ class ControllerViewController: UIViewController {
         
         // Grab potential command portion from transcript
         let chars = Array(text)
-        var command = String(chars[9...])
+        let command = String(chars[9...])
         print("command:"+command)
+        self.speak(text:command)
         
-        
-        var validCommands = ["go forward":0,"go backward":0,"go left":0, "go right":0, "turn left":0, "turn right":0, "start":1, "stop":1, "sit":1, "stand":1]
+        let validCommands = ["start":1, "stop":1, "sit":1, "stand":1, "shutdown":2, "off":2,
+                             "speed up":1, "speed down":1, "command up":1, "command down":1]
         
         // Check against valid commands, send
         if validCommands.keys.contains(command){
@@ -338,12 +381,16 @@ class ControllerViewController: UIViewController {
                 self.send(message: command, priority: true)
             } else if validCommands[command] == 2 {
                 self.send(message: command, emerg:true, priority: true)
-            } else {
-                self.send(message: command)
             }
-            print("Valid")
         } else {
-            print("Invalid Command")
+            self.send(message:command)
+        }
+        if command == "launch" || command == "start"{
+            startStop.setTitle("SHUTDOWN", for: .normal)
+            launched = true
+        } else if command == "shutdown" {
+            startStop.setTitle("LAUNCH", for: .normal)
+            launched = false
         }
     }
     
@@ -484,18 +531,18 @@ class ControllerViewController: UIViewController {
     
     @IBAction func setSpeed(_ sender: UIStepper) {
         if sender.value > speed {
-            send(message: "increasespeed", priority: true)
+            send(message: "speedup", priority: true)
         } else {
-            send(message: "decreasespeed", priority: true)
+            send(message: "speeddown", priority: true)
         }
         speed = sender.value
     }
     
     @IBAction func setCmdAcc(_ sender: UIStepper) {
         if sender.value > cmd {
-            send(message: "increasecmd", priority: true)
+            send(message: "commandup", priority: true)
         } else {
-            send(message: "decreasecmd", priority: true)
+            send(message: "commanddown", priority: true)
         }
         cmd = sender.value
     }
@@ -536,15 +583,17 @@ class ControllerViewController: UIViewController {
         - Parameter priority: bool, whether message gets priority, default false
      */
     private func send(message: String, emerg: Bool = false, priority: Bool = false){
+        let tmessage = message.replacingOccurrences(of: " ", with: "")
+        print("sending",tmessage)
         if emerg {
-            self.mqttClient.publish("rpi/emerg", withString: message)
+            self.mqttClient.publish("rpi/emerg", withString: tmessage)
         } else if priority {
             let temp = movestack
             movestack = 0
-            carefulSend(message: message)
+            carefulSend(message: tmessage)
             movestack = temp
         } else {
-            carefulSend(message: message)
+            carefulSend(message: tmessage)
         }
     }
     
