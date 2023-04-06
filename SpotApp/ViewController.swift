@@ -525,6 +525,7 @@ class ControllerViewController: UIViewController {
     
     
     // MARK: -Setters & Toggles
+
     @IBAction func setHeight(_ sender: UISlider) {
         send(message: "setHeight" + String(sender.value), priority: true)
     }
