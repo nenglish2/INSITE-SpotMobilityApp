@@ -383,9 +383,9 @@ class ControllerViewController: UIViewController {
                 self.send(message: command, emerg:true, priority: true)
             }
         } else {
-            self.send(message: "commandset2.5")
-            self.send(message:command)
-            self.send(message: "commandset"+String(cmd))
+            self.send(message: "commandset2.5",priority: true)
+            self.send(message:command,priority: true)
+            self.send(message: "commandset"+String(cmd),priority: true)
         }
         if command == "launch" || command == "start"{
             startStop.setTitle("SHUTDOWN", for: .normal)
@@ -583,6 +583,13 @@ class ControllerViewController: UIViewController {
         send(message: "unstow")
     }
     
+    @IBAction func fetchTug(_ sender: Any) {
+        send(message: "fetch")
+    }
+    
+    @IBAction func fetchBottle(_ sender: Any) {
+        send(message: "fetch")
+    }
     
     
     // MARK: -Send Mssgs
