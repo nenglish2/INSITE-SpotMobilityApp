@@ -276,7 +276,7 @@ class ControllerViewController: UIViewController {
         utterance.rate = 0.57
         utterance.pitchMultiplier = 0.8
         utterance.postUtteranceDelay = 0.2
-        utterance.volume = 1.0
+//        utterance.volume = 1.0
 
         // Retrieve the British English voice.
         let voice = AVSpeechSynthesisVoice(language: "en-GB")
@@ -383,7 +383,9 @@ class ControllerViewController: UIViewController {
                 self.send(message: command, emerg:true, priority: true)
             }
         } else {
+            self.send(message: "commandset2.5")
             self.send(message:command)
+            self.send(message: "commandset"+String(cmd))
         }
         if command == "launch" || command == "start"{
             startStop.setTitle("SHUTDOWN", for: .normal)
@@ -571,6 +573,14 @@ class ControllerViewController: UIViewController {
     
     @IBAction func stand(_ sender: Any) {
         send(message: "stand", priority: true)
+    }
+    
+    @IBAction func stow(_ sender: Any) {
+        send(message: "stow", priority: true)
+    }
+    
+    @IBAction func unstow(_ sender: Any) {
+        send(message: "unstow")
     }
     
     
