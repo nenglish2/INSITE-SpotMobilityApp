@@ -411,7 +411,6 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Unstow"/>
                                         <connections>
-                                            <action selector="stow:" destination="AUD-5j-CAf" eventType="touchUpInside" id="QoG-bB-Xis"/>
                                             <action selector="unstow:" destination="AUD-5j-CAf" eventType="touchUpInside" id="4sN-vl-Gv7"/>
                                         </connections>
                                     </button>

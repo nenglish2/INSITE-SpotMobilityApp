@@ -584,7 +584,7 @@ class ControllerViewController: UIViewController {
     }
     
     @IBAction func fetchTug(_ sender: Any) {
-        send(message: "fetch")
+        send(message: "fetchtug")
     }
     
     @IBAction func fetchBottle(_ sender: Any) {
