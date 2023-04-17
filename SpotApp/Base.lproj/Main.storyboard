@@ -259,7 +259,7 @@
                                             <action selector="Settings:" destination="AUD-5j-CAf" id="XhS-WN-nzk"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Manip" id="hd8-vz-dzP">
+                                    <barButtonItem title="Arm" id="hd8-vz-dzP">
                                         <connections>
                                             <action selector="Manipulation:" destination="AUD-5j-CAf" id="7ZV-CQ-CmW"/>
                                         </connections>
@@ -325,38 +325,38 @@
                                 </subviews>
                             </stackView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2Im-d7-wh2">
-                                <rect key="frame" x="410" y="147" width="116.5" height="120"/>
+                                <rect key="frame" x="410" y="147" width="122" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4M-aK-5ch">
-                                        <rect key="frame" x="0.0" y="0.0" width="116.5" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="122" height="34.5"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Fetch Tug"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Open Door"/>
                                         <connections>
                                             <action selector="fetchTug:" destination="AUD-5j-CAf" eventType="touchUpInside" id="Fj5-VD-RLa"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPi-C9-KaL">
-                                        <rect key="frame" x="0.0" y="34.5" width="116.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="34.5" width="122" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tf9-xv-rtv">
-                                        <rect key="frame" x="0.0" y="55" width="116.5" height="10"/>
+                                        <rect key="frame" x="0.0" y="55" width="122" height="10"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5N-r0-TW4">
-                                        <rect key="frame" x="0.0" y="65" width="116.5" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="65" width="122" height="34.5"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Fetch Bottle"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Fetch Object"/>
                                         <connections>
                                             <action selector="fetchBottle:" destination="AUD-5j-CAf" eventType="touchUpInside" id="eB7-IU-n3K"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJk-Pl-9zX">
-                                        <rect key="frame" x="0.0" y="99.5" width="116.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="99.5" width="122" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -364,28 +364,28 @@
                                 </subviews>
                             </stackView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-gU-sov">
-                                <rect key="frame" x="399" y="102" width="414" height="174"/>
+                                <rect key="frame" x="399" y="102" width="426" height="174"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FH-S9-Tpd">
-                                        <rect key="frame" x="-2" y="0.0" width="418" height="31"/>
+                                        <rect key="frame" x="-2" y="0.0" width="430" height="31"/>
                                         <connections>
                                             <action selector="setMouth:" destination="AUD-5j-CAf" eventType="valueChanged" id="d07-1U-ebD"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Mouth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kG-rc-Zgz">
-                                        <rect key="frame" x="0.0" y="30" width="414" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="30" width="426" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3e-zo-7K0">
-                                        <rect key="frame" x="0.0" y="50.5" width="414" height="10"/>
+                                        <rect key="frame" x="0.0" y="50.5" width="426" height="10"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIk-pa-lhx">
-                                        <rect key="frame" x="0.0" y="60.5" width="414" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="60.5" width="426" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Open/Close"/>
                                         <connections>
@@ -393,13 +393,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43y-EL-hRf">
-                                        <rect key="frame" x="0.0" y="95" width="414" height="10"/>
+                                        <rect key="frame" x="0.0" y="95" width="426" height="10"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfk-Li-lro">
-                                        <rect key="frame" x="0.0" y="105" width="414" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="105" width="426" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Stow"/>
                                         <connections>
@@ -407,7 +407,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8u-Aw-17Q">
-                                        <rect key="frame" x="0.0" y="139.5" width="414" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="139.5" width="426" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Unstow"/>
                                         <connections>
