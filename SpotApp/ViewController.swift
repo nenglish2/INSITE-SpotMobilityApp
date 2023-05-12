@@ -190,6 +190,9 @@ class ControllerViewController: UIViewController {
     @IBOutlet weak var rollMenu: UIStackView!
     @IBOutlet weak var missionMenu: UIStackView!
     
+    @IBOutlet weak var stand: UIButton!
+    @IBOutlet weak var sit: UIButton!
+    
     // launch / shutdown button
     @IBOutlet weak var startStop: UIButton!
     
@@ -313,6 +316,8 @@ class ControllerViewController: UIViewController {
             rotJoy.isHidden = true
             movlab.isHidden = true
             rotlab.isHidden = true
+            stand.isHidden = true
+            sit.isHidden = true
             voiceComm.isHidden = false
             round.isHidden = false
             transcript.isHidden = false
@@ -325,6 +330,8 @@ class ControllerViewController: UIViewController {
             rotJoy.isHidden = false
             movlab.isHidden = false
             rotlab.isHidden = false
+            stand.isHidden = false
+            sit.isHidden = false
             voiceComm.isHidden = true
             round.isHidden = true
             transcript.isHidden = true

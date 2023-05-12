@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32k-8o-4oJ">
-                                <rect key="frame" x="376" y="245" width="144" height="68"/>
+                                <rect key="frame" x="376" y="244" width="144" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <state key="normal" title="Button"/>
@@ -364,28 +364,28 @@
                                 </subviews>
                             </stackView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-gU-sov">
-                                <rect key="frame" x="399" y="102" width="426" height="174"/>
+                                <rect key="frame" x="399" y="102" width="438" height="174"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FH-S9-Tpd">
-                                        <rect key="frame" x="-2" y="0.0" width="430" height="31"/>
+                                        <rect key="frame" x="-2" y="0.0" width="442" height="31"/>
                                         <connections>
                                             <action selector="setMouth:" destination="AUD-5j-CAf" eventType="valueChanged" id="d07-1U-ebD"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Mouth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kG-rc-Zgz">
-                                        <rect key="frame" x="0.0" y="30" width="426" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="30" width="438" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3e-zo-7K0">
-                                        <rect key="frame" x="0.0" y="50.5" width="426" height="10"/>
+                                        <rect key="frame" x="0.0" y="50.5" width="438" height="10"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIk-pa-lhx">
-                                        <rect key="frame" x="0.0" y="60.5" width="426" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="60.5" width="438" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Open/Close"/>
                                         <connections>
@@ -393,13 +393,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43y-EL-hRf">
-                                        <rect key="frame" x="0.0" y="95" width="426" height="10"/>
+                                        <rect key="frame" x="0.0" y="95" width="438" height="10"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfk-Li-lro">
-                                        <rect key="frame" x="0.0" y="105" width="426" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="105" width="438" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Stow"/>
                                         <connections>
@@ -407,7 +407,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8u-Aw-17Q">
-                                        <rect key="frame" x="0.0" y="139.5" width="426" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="139.5" width="438" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Unstow"/>
                                         <connections>
@@ -416,17 +416,8 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWB-YO-zrh">
-                                <rect key="frame" x="226" y="334" width="69" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Stand"/>
-                                <connections>
-                                    <action selector="stand:" destination="AUD-5j-CAf" eventType="touchUpInside" id="Eks-v4-Jcu"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14Z-dl-QZX">
-                                <rect key="frame" x="133" y="334" width="53" height="35"/>
+                                <rect key="frame" x="92" y="334" width="53" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sit"/>
@@ -459,6 +450,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWB-YO-zrh">
+                                <rect key="frame" x="172" y="334" width="69" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Stand"/>
+                                <connections>
+                                    <action selector="stand:" destination="AUD-5j-CAf" eventType="touchUpInside" id="Eks-v4-Jcu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vi1-dq-WVW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -488,6 +488,8 @@
                         <outlet property="rotlab" destination="TS2-WC-M1e" id="cSL-Fw-kkS"/>
                         <outlet property="round" destination="gmD-0z-K72" id="AwA-wx-rCr"/>
                         <outlet property="settingsMenu" destination="Xtu-Gf-23O" id="zPG-AB-iyN"/>
+                        <outlet property="sit" destination="14Z-dl-QZX" id="v7Q-S5-a6c"/>
+                        <outlet property="stand" destination="MWB-YO-zrh" id="BXM-p6-rhg"/>
                         <outlet property="startStop" destination="zOI-pD-LW2" id="DiZ-cM-5op"/>
                         <outlet property="toolbar" destination="LQd-FL-sI5" id="uEN-Xz-Ajq"/>
                         <outlet property="transcript" destination="aad-xU-nnv" id="wju-qU-wln"/>
