@@ -37,13 +37,10 @@ class HomeViewController: UIViewController {
     
     // Mqtt client and host data
     struct MqttInfo {
-//        static var mqttClient = CocoaMQTT(clientID: "iOS Device", host: "192.168.1.2", port: 1883) // new pi irobot
-        static var mqttClient = CocoaMQTT(clientID: "iOS Device", host: "137.146.188.247", port: 1883) // new pi irobot
+        static var mqttClient = CocoaMQTT(clientID: "iOS Device", host: HOST_IP, port: 1883) // new pi irobot
     }
     
-    //let mqttClient = CocoaMQTT(clientID: "iOS Device", host: "137.146.127.40", port: 1883) // old pi
-    //let mqttClient = CocoaMQTT(clientID: "iOS Device", host: "137.146.255.24", port: 1883) // new pi guest access
-    //let mqttClient = CocoaMQTT(clientID: "iOS Device", host: "137.146.188.247", port: 1883) // new pi irobot
+    
     let mqttClient = MqttInfo.mqttClient
     
     @IBOutlet weak var connButton: UIButton!
